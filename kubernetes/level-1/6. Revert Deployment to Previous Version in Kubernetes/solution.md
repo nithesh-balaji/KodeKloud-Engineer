@@ -1,6 +1,9 @@
-## Revert Deployment to Previous Version in Kubernetes
+## Solution
 
-Earlier today, the Nautilus DevOps team deployed a new release for an application. However, a customer has reported a bug related to this recent release. Consequently, the team aims to revert to the previous version.
+1. Check deployment history
 
+    `kubectl rollout history deployments/nginx-deployment`
 
-There exists a deployment named nginx-deployment; initiate a rollback to the previous revision.
+2. Use imperative command to rollback to the previous version
+
+    `kubectl rollout undo deployments/nginx-deployment`
