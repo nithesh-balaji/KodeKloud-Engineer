@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: devops
+spec:
+  jobTemplate:
+    metadata:
+      name: devops
+    spec:
+      template:
+        metadata:
+        spec:
+          containers:
+          - command:
+            - echo
+            - Welcome
+            - to
+            - xfusioncorp!
+            image: httpd:latest
+            name: cron-devops
+          restartPolicy: OnFailure
+  schedule: '*/7 * * * *'
