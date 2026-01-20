@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: volume-share-devops
+  name: volume-share-devops
+spec:
+  containers:
+  - image: debian:latest
+    name: volume-container-devops-1
+    command: ["sleep", "3600"]
+    volumeMounts:
+    - mountPath: /tmp/media
+      name: volume-share
+  - image: debian:latest
+    name: volume-container-devops-2
+    command: ["sleep", "3600"]
+    volumeMounts:
+    - mountPath: /tmp/cluster
+      name: volume-share
+  volumes:
+  - name: volume-share
+    emptyDir: {}
