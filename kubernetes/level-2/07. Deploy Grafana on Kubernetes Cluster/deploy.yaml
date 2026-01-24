@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana-deployment-datacenter
+  name: grafana-deployment-datacenter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana-deployment-datacenter
+  template:
+    metadata:
+      labels:
+        app: grafana-deployment-datacenter
+    spec:
+      containers:
+      - image: grafana/grafana:latest
+        name: grafana
