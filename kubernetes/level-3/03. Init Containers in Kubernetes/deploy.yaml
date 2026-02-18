@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ic-devops
+  name: ic-deploy-devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ic-devops
+  template:
+    metadata:
+      labels:
+        app: ic-devops
+    spec:
+      containers:
+      - image: fedora:latest
+        name: ic-main-devops
+        command: ['/bin/bash', '-c', 'while true; do cat /ic/media; sleep 5; done']
+        volumeMounts:
+        - name: ic-volume-devops
+          mountPath: /ic
+      initContainers:
+      - image: fedora:latest
+        name: ic-msg-devops
+        command: ['/bin/bash', '-c', 'echo Init Done - Welcome to xFusionCorp Industries > /ic/media' ]
+        volumeMounts:
+        - name: ic-volume-devops
+          mountPath: /ic
+      volumes:
+      - name: ic-volume-devops
+        emptyDir: {}
