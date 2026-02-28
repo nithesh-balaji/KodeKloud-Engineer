@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: secret-devops
+  name: secret-devops
+spec:
+  containers:
+  - image: ubuntu:latest
+    name: secret-container-devops
+    command: ["/bin/bash", "-c", "sleep 3600"]
+    volumeMounts:
+    - name: secret-volume
+      mountPath: /opt/cluster
+  volumes:
+  - name: secret-volume
+    secret:
+      secretName: official
