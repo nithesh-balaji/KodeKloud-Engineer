@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: iron-gallery
+  name: iron-gallery-service-devops
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+    nodePort: 32678
+  selector:
+    run: iron-gallery
+  type: NodePort
